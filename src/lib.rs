@@ -7,7 +7,7 @@ use napi::{
   threadsafe_function::ThreadSafeCallContext, CallContext, Error, JsExternal, JsFunction, JsObject,
   JsString, JsUndefined, Result, Status,
 };
-use notify::{immediate_watcher, Event, ReadDirectoryChangesWatcher, Watcher};
+use notify::{immediate_watcher, Event, RecommendedWatcher, Watcher};
 
 #[cfg(all(
   target_arch = "x86_64",
@@ -56,9 +56,7 @@ fn watch(ctx: CallContext) -> Result<JsExternal> {
 fn unwatch(ctx: CallContext) -> Result<JsUndefined> {
   let ext = ctx.get::<JsExternal>(0)?;
   let p = ctx.get::<JsString>(1)?.into_utf8()?;
-  let watcher = ctx
-    .env
-    .get_value_external::<ReadDirectoryChangesWatcher>(&ext)?;
+  let watcher = ctx.env.get_value_external::<RecommendedWatcher>(&ext)?;
 
   watcher
     .unwatch(p.as_str()?)
