@@ -1,12 +1,28 @@
 {
   "name": "@napi-rs/notify-linux-x64-musl",
-  "version": "1.0.0",
-  "os": ["linux"],
-  "cpu": ["x64"],
+  "version": "0.0.1",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
   "main": "notify.linux-x64-musl.node",
-  "files": ["notify.linux-x64-musl.node"],
+  "files": [
+    "notify.linux-x64-musl.node"
+  ],
   "description": "https://github.com/notify-rs/notify Node.js binding via https://napi.rs",
-  "keywords": ["napi-rs", "NAPI", "Node-API", "N-API", "Rust", "node-addon", "node-addon-api", "notify", "fs-watcher"],
+  "keywords": [
+    "napi-rs",
+    "NAPI",
+    "Node-API",
+    "N-API",
+    "Rust",
+    "node-addon",
+    "node-addon-api",
+    "notify",
+    "fs-watcher"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">= 10"

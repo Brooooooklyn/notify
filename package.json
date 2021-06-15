@@ -1,12 +1,25 @@
 {
   "name": "@napi-rs/notify",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "https://github.com/notify-rs/notify Node.js binding via https://napi.rs",
   "main": "index.js",
   "repository": "https://github.com/Brooooooklyn/notify",
   "license": "MIT",
-  "keywords": ["napi-rs", "NAPI", "Node-API", "N-API", "Rust", "node-addon", "node-addon-api", "notify", "fs-watcher"],
-  "files": ["index.d.ts", "index.js"],
+  "keywords": [
+    "napi-rs",
+    "NAPI",
+    "Node-API",
+    "N-API",
+    "Rust",
+    "node-addon",
+    "node-addon-api",
+    "notify",
+    "fs-watcher"
+  ],
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
   "napi": {
     "name": "notify",
     "triples": {
@@ -70,14 +83,27 @@
     "@node-rs/helper": "^1.2.0"
   },
   "lint-staged": {
-    "*.@(js|ts|tsx)": ["prettier --write", "eslint -c .eslintrc.yml --fix"],
-    "*.@(yml|yaml)": ["prettier --parser yaml --write"],
-    "*.md": ["prettier --parser markdown --write"],
-    "*.json": ["prettier --parser json --write"]
+    "*.@(js|ts|tsx)": [
+      "prettier --write",
+      "eslint -c .eslintrc.yml --fix"
+    ],
+    "*.@(yml|yaml)": [
+      "prettier --parser yaml --write"
+    ],
+    "*.md": [
+      "prettier --parser markdown --write"
+    ],
+    "*.json": [
+      "prettier --parser json --write"
+    ]
   },
   "ava": {
-    "require": ["@swc-node/register"],
-    "extensions": ["ts"],
+    "require": [
+      "@swc-node/register"
+    ],
+    "extensions": [
+      "ts"
+    ],
     "environmentVariables": {
       "TS_NODE_PROJECT": "./tsconfig.json"
     }
