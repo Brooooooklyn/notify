@@ -1,6 +1,6 @@
 {
   "name": "@napi-rs/notify",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "https://github.com/notify-rs/notify Node.js binding via https://napi.rs",
   "main": "index.js",
   "repository": "https://github.com/Brooooooklyn/notify",
