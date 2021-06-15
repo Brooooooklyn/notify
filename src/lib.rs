@@ -3,61 +3,65 @@
 #[macro_use]
 extern crate napi_derive;
 
-use std::convert::TryInto;
-
-use napi::{CallContext, Env, JsNumber, JsObject, Result, Task};
+use napi::{
+  threadsafe_function::ThreadSafeCallContext, CallContext, Error, JsExternal, JsFunction, JsObject,
+  JsString, JsUndefined, Result, Status,
+};
+use notify::{immediate_watcher, Event, ReadDirectoryChangesWatcher, Watcher};
 
 #[cfg(all(
-  unix,
+  target_arch = "x86_64",
   not(target_env = "musl"),
-  not(target_arch = "aarch64"),
-  not(target_arch = "arm"),
   not(debug_assertions)
 ))]
 #[global_allocator]
-static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;
-
-#[cfg(all(windows, target_arch = "x86_64"))]
-#[global_allocator]
 static ALLOC: mimalloc::MiMalloc = mimalloc::MiMalloc;
-
-struct AsyncTask(u32);
-
-impl Task for AsyncTask {
-  type Output = u32;
-  type JsValue = JsNumber;
-
-  fn compute(&mut self) -> Result<Self::Output> {
-    use std::thread::sleep;
-    use std::time::Duration;
-    sleep(Duration::from_millis(self.0 as u64));
-    Ok(self.0 * 2)
-  }
-
-  fn resolve(self, env: Env, output: Self::Output) -> Result<Self::JsValue> {
-    env.create_uint32(output)
-  }
-}
 
 #[module_exports]
 fn init(mut exports: JsObject) -> Result<()> {
-  exports.create_named_method("sync", sync_fn)?;
+  exports.create_named_method("watch", watch)?;
+  exports.create_named_method("unwatch", unwatch)?;
 
-  exports.create_named_method("sleep", sleep)?;
   Ok(())
 }
 
-#[js_function(1)]
-fn sync_fn(ctx: CallContext) -> Result<JsNumber> {
-  let argument: u32 = ctx.get::<JsNumber>(0)?.try_into()?;
+#[js_function(2)]
+fn watch(ctx: CallContext) -> Result<JsExternal> {
+  let dir = ctx.get::<JsString>(0)?.into_utf8()?;
+  let cb = ctx.get::<JsFunction>(1)?;
+  let tscb = ctx
+    .env
+    .create_threadsafe_function(&cb, 0, |cx: ThreadSafeCallContext<Event>| {
+      Ok(vec![cx
+        .env
+        .create_string_from_std(serde_json::to_string(&cx.value)?)?])
+    })?;
 
-  ctx.env.create_uint32(argument + 100)
+  let mut watcher = immediate_watcher(move |evt: notify::Result<Event>| {
+    tscb.call(
+      evt.map_err(|e| Error::new(Status::GenericFailure, format!("{}", e))),
+      napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+    );
+  })
+  .map_err(|e| Error::new(Status::GenericFailure, format!("{}", e)))?;
+
+  watcher
+    .watch(dir.as_str()?, notify::RecursiveMode::Recursive)
+    .map_err(|e| Error::new(Status::GenericFailure, format!("{}", e)))?;
+
+  ctx.env.create_external(watcher, None)
 }
 
-#[js_function(1)]
-fn sleep(ctx: CallContext) -> Result<JsObject> {
-  let argument: u32 = ctx.get::<JsNumber>(0)?.try_into()?;
-  let task = AsyncTask(argument);
-  let async_task = ctx.env.spawn(task)?;
-  Ok(async_task.promise_object())
+#[js_function(2)]
+fn unwatch(ctx: CallContext) -> Result<JsUndefined> {
+  let ext = ctx.get::<JsExternal>(0)?;
+  let p = ctx.get::<JsString>(1)?.into_utf8()?;
+  let watcher = ctx
+    .env
+    .get_value_external::<ReadDirectoryChangesWatcher>(&ext)?;
+
+  watcher
+    .unwatch(p.as_str()?)
+    .map_err(|e| Error::new(Status::GenericFailure, format!("{}", e)))?;
+  ctx.env.get_undefined()
 }

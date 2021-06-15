@@ -1,11 +1,13 @@
 const { loadBinding } = require('@node-rs/helper')
 
-/**
- * __dirname means load native addon from current dir
- * 'package-template' means native addon name is `package-template`
- * the first arguments was decided by `napi.name` field in `package.json`
- * the second arguments was decided by `name` field in `package.json`
- * loadBinding helper will load `package-template.[PLATFORM].node` from `__dirname` first
- * If failed to load addon, it will fallback to load from `@napi-rs/package-template-[PLATFORM]`
- */
-module.exports = loadBinding(__dirname, 'package-template', '@napi-rs/package-template')
+const { watch: rawWatch, unwatch } = loadBinding(__dirname, 'notify', '@napi-rs/notify')
+
+module.exports = {
+  watch: function watch(dir, cb) {
+    const watcher = rawWatch(dir, (err, evt) => {
+      cb(err, JSON.parse(evt))
+    })
+
+    return () => unwatch(watcher, dir)
+  },
+}

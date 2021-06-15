@@ -1,14 +1,12 @@
 import test from 'ava'
 
-import { sleep, sync } from '../index'
+import { watch } from '../index'
 
-test('sync function from native code', (t) => {
-  const fixture = 42
-  t.is(sync(fixture), fixture + 100)
-})
+const noop = () => {}
 
-test('sleep function from native code', async (t) => {
-  const timeToSleep = 200
-  const value = await sleep(timeToSleep)
-  t.is(value, timeToSleep * 2)
+test('should watch and unwatch', (t) => {
+  const unwatch = watch(process.cwd(), noop)
+  t.notThrows(() => {
+    unwatch()
+  })
 })

@@ -1,14 +1,14 @@
 {
-  "name": "@napi-rs/package-template",
-  "version": "1.0.0",
-  "description": "Template project for writing node package with napi-rs",
+  "name": "@napi-rs/notify",
+  "version": "0.0.1",
+  "description": "https://github.com/notify-rs/notify Node.js binding via https://napi.rs",
   "main": "index.js",
-  "repository": "git@github.com:napi-rs/package-template.git",
+  "repository": "https://github.com/Brooooooklyn/notify",
   "license": "MIT",
-  "keywords": ["napi-rs", "NAPI", "N-API", "Rust", "node-addon", "node-addon-api"],
+  "keywords": ["napi-rs", "NAPI", "Node-API", "N-API", "Rust", "node-addon", "node-addon-api", "notify", "fs-watcher"],
   "files": ["index.d.ts", "index.js"],
   "napi": {
-    "name": "package-template",
+    "name": "notify",
     "triples": {
       "defaults": true,
       "additional": [
@@ -37,12 +37,12 @@
     "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "format": "run-p format:md format:json format:yaml format:source format:rs",
-    "format:md": "prettier --parser markdown --write './**/*.md'",
-    "format:json": "prettier --parser json --write './**/*.json'",
+    "format:md": "prettier --parser markdown --write \"./**/*.md\"",
+    "format:json": "prettier --parser json --write \"./**/*.json\"",
     "format:rs": "cargo fmt",
-    "format:source": "prettier --config ./package.json --write './**/*.{js,ts}'",
-    "format:yaml": "prettier --parser yaml --write './**/*.{yml,yaml}'",
-    "lint": "eslint . -c ./.eslintrc.yml './**/*.{ts,tsx,js}'",
+    "format:source": "prettier --config ./package.json --write \"./**/*.{js,ts}\"",
+    "format:yaml": "prettier --parser yaml --write \"./**/*.{yml,yaml}\"",
+    "lint": "eslint -c ./.eslintrc.yml .",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "version": "napi version"
@@ -89,5 +89,9 @@
     "singleQuote": true,
     "arrowParens": "always",
     "parser": "typescript"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/Brooooooklyn"
   }
 }

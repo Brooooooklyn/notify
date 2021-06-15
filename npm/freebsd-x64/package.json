@@ -1,12 +1,12 @@
 {
-  "name": "@napi-rs/package-template-freebsd-x64",
+  "name": "@napi-rs/notify-freebsd-x64",
   "version": "1.0.0",
   "os": ["freebsd"],
   "cpu": ["x64"],
-  "main": "package-template.freebsd-x64.node",
-  "files": ["package-template.freebsd-x64.node"],
-  "description": "Template project for writing node package with napi-rs",
-  "keywords": ["napi-rs", "NAPI", "N-API", "Rust", "node-addon", "node-addon-api"],
+  "main": "notify.freebsd-x64.node",
+  "files": ["notify.freebsd-x64.node"],
+  "description": "https://github.com/notify-rs/notify Node.js binding via https://napi.rs",
+  "keywords": ["napi-rs", "NAPI", "Node-API", "N-API", "Rust", "node-addon", "node-addon-api", "notify", "fs-watcher"],
   "license": "MIT",
   "engines": {
     "node": ">= 10"
@@ -15,5 +15,5 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "repository": "git@github.com:napi-rs/package-template.git"
+  "repository": "https://github.com/Brooooooklyn/notify"
 }

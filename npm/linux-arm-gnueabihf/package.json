@@ -1,12 +1,12 @@
 {
-  "name": "@napi-rs/package-template-linux-arm-gnueabihf",
+  "name": "@napi-rs/notify-linux-arm-gnueabihf",
   "version": "1.0.0",
   "os": ["linux"],
   "cpu": ["arm"],
-  "main": "package-template.linux-arm-gnueabihf.node",
-  "files": ["package-template.linux-arm-gnueabihf.node"],
-  "description": "Template project for writing node package with napi-rs",
-  "keywords": ["napi-rs", "NAPI", "N-API", "Rust", "node-addon", "node-addon-api"],
+  "main": "notify.linux-arm-gnueabihf.node",
+  "files": ["notify.linux-arm-gnueabihf.node"],
+  "description": "https://github.com/notify-rs/notify Node.js binding via https://napi.rs",
+  "keywords": ["napi-rs", "NAPI", "Node-API", "N-API", "Rust", "node-addon", "node-addon-api", "notify", "fs-watcher"],
   "license": "MIT",
   "engines": {
     "node": ">= 10"
@@ -15,5 +15,5 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "repository": "git@github.com:napi-rs/package-template.git"
+  "repository": "https://github.com/Brooooooklyn/notify"
 }
