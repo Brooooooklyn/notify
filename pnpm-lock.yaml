@@ -14,7 +14,7 @@ specifiers:
   eslint-plugin-import: ^2.23.4
   eslint-plugin-prettier: ^3.4.0
   eslint-plugin-sonarjs: ^0.9.0
-  husky: ^6.0.0
+  husky: ^7.0.0
   lint-staged: ^11.0.0
   npm-run-all: ^4.1.5
   prettier: ^2.3.1
@@ -36,7 +36,7 @@ devDependencies:
   eslint-plugin-import: 2.23.4_eslint@7.28.0
   eslint-plugin-prettier: 3.4.0_441ef98f5280b4c825fe505e43fc5698
   eslint-plugin-sonarjs: 0.9.0_eslint@7.28.0
-  husky: 6.0.0
+  husky: 7.0.2
   lint-staged: 11.0.0
   npm-run-all: 4.1.5
   prettier: 2.3.1
@@ -1931,8 +1931,9 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
-  /husky/6.0.0:
-    resolution: {integrity: sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ==}
+  /husky/7.0.2:
+    resolution: {integrity: sha512-8yKEWNX4z2YsofXAMT7KvA1g8p+GxtB1ffV8XtpAEGuXNAbCV5wdNKH+qTpw8SM9fh4aMPDR+yQuKfgnreyZlg==}
+    engines: {node: '>=12'}
     hasBin: true
     dev: true
 
