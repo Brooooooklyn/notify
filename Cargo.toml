@@ -12,7 +12,7 @@ crate-type = ["cdylib"]
 [dependencies]
 napi = {version = "1", features = ["napi4", "serde-json"]}
 napi-derive = "1"
-notify = {version = "5.0.0-pre.10", features = ["serde"]}
+notify = {version = "5.0.0-pre", features = ["serde"]}
 serde = "1"
 serde_json = "1"
 
