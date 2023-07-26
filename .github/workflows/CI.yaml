@@ -137,7 +137,7 @@ jobs:
         if: ${{ matrix.settings.setup }}
         shell: bash
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.4.0
         with:
           version: ${{ env.PNPM_VERSION }}
           run_install: |
@@ -232,7 +232,7 @@ jobs:
           path: ~/.pnpm-store
           key: npm-cache-test-${{ matrix.settings.target }}-${{ matrix.node }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.4.0
         with:
           version: ${{ env.PNPM_VERSION }}
           run_install: |
@@ -277,7 +277,7 @@ jobs:
           path: ~/.pnpm-store
           key: npm-cache-test-linux-x64-gnu-${{ matrix.node }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.4.0
         with:
           version: ${{ env.PNPM_VERSION }}
           run_install: |
@@ -322,7 +322,7 @@ jobs:
           path: ~/.pnpm-store
           key: npm-cache-test-x86_64-unknown-linux-musl-${{ matrix.node }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.4.0
         with:
           version: ${{ env.PNPM_VERSION }}
           run_install: |
@@ -472,7 +472,7 @@ jobs:
           restore-keys: |
             npm-cache
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.4.0
         with:
           version: ${{ env.PNPM_VERSION }}
           run_install: |
