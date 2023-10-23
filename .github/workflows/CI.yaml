@@ -85,7 +85,7 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -158,7 +158,7 @@ jobs:
     runs-on: macos-latest
     name: Build FreeBSD
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build
         id: build
         uses: vmactions/freebsd-vm@v0.1.5
@@ -218,7 +218,7 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -263,7 +263,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -308,7 +308,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -355,7 +355,7 @@ jobs:
     steps:
       - run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Download artifacts
         uses: actions/download-artifact@v2
@@ -406,7 +406,7 @@ jobs:
     steps:
       - run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Download artifacts
         uses: actions/download-artifact@v2
@@ -456,7 +456,7 @@ jobs:
       - build-freebsd
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup node
         uses: actions/setup-node@v2
